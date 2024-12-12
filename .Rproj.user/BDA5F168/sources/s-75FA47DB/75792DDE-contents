@@ -1,28 +1,30 @@
-source("typecheck.R")
-source("typedefs.R")
-source("functionannotation.R")
-source("custommathfunctions.R")
-
 # BASIC TYPE CHECKING
 
-expect_stop(double(x) <- 1) # fails since x has not been initialized yet
+expect_stop(double(x) <-
+              1) # fails since x has not been initialized yet
 
-x <- NULL # should initialize all variables with NULL before assignment
+x <-
+  NULL # should initialize all variables with NULL before assignment
 double(x) <- 1
 stopifnot(x == 1)
-expect_stop(integer(x) <- 2) # fails since 2 is a double, not an integer
-expect_stop(integer(x) <- 2L) # fails since x has been already initialized as a double
+expect_stop(integer(x) <-
+              2) # fails since 2 is a double, not an integer
+expect_stop(integer(x) <-
+              2L) # fails since x has been already initialized as a double
 
 y <- NULL
 vec_double(y, 3) <- c(1, 2, 3)
 stopifnot(identical(y, c(1, 2, 3)))
-expect_stop(vec_double(y, 3) <- c(1, 2)) # fails since vector is of length 2, not 3
-expect_stop(vec_double(y, 2) <- c(1, 2)) # fails since y was already initialized with length 3
+expect_stop(vec_double(y, 3) <-
+              c(1, 2)) # fails since vector is of length 2, not 3
+expect_stop(vec_double(y, 2) <-
+              c(1, 2)) # fails since y was already initialized with length 3
 
 z <- NULL
 logical(z) <- TRUE
 stopifnot(z == TRUE)
-expect_stop(integer(z) <- 0L) # fails since z was already initialized as logical type
+expect_stop(integer(z) <-
+              0L) # fails since z was already initialized as logical type
 
 # demonstration of both scalar and vector factors
 single_level <- NULL
@@ -56,9 +58,10 @@ expect_stop(vec_factor(fruit_factor_list, 3) <-
 # works with built in functions!
 normal <- NULL
 vec_normal <- NULL
-double(normal) <- rnorm(1,0,1)
-vec_double(vec_normal, 5) <- rnorm(5,0,1)
-expect_stop(vec_double(vec_normal, 5) <- rnorm(3,0,1)) # fails because of length mismatch
+double(normal) <- rnorm(1, 0, 1)
+vec_double(vec_normal, 5) <- rnorm(5, 0, 1)
+expect_stop(vec_double(vec_normal, 5) <-
+              rnorm(3, 0, 1)) # fails because of length mismatch
 
 ### LIMITATIONS
 # must use assignment wrapper in order to force typechecking

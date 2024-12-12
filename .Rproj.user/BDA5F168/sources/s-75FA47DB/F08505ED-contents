@@ -18,7 +18,7 @@ annotate <- function(func, input_types, output_type) {
       
       # check dots arguments if type is specified after dots
       if (length(input_types) > dots_index) {
-        dots_type <- input_types[dots_index + 1]
+        dots_type <- input_types[[dots_index + 1]]
         
         if (dots_index > 1) {
           dots_args <- args[-(1:(dots_index - 1))]

@@ -1,0 +1,43 @@
+# Type-checking function
+check_type <- function(value, expected_type) {
+  # Handle basic types
+  if (expected_type == "int") {
+    if (!is.integer(value)) stop(sprintf("Expected type 'int', got '%s'", typeof(value)))
+  } else if (expected_type == "double") {
+    if (!is.numeric(value)) stop(sprintf("Expected type 'double', got '%s'", typeof(value)))
+  } else if (expected_type == "logical") {
+    if (!is.logical(value)) stop(sprintf("Expected type 'logical', got '%s'", typeof(value)))
+  } else if (expected_type == "str") {
+    if (!is.character(value)) stop(sprintf("Expected type 'str', got '%s'", typeof(value)))
+  } else if (grepl("^vector\\((.*)\\)$", expected_type)) {
+    # Check for vector types (e.g., vector(int))
+    type_inside <- sub("^vector\\((.*)\\)$", "\\1", expected_type)
+    if (!is.vector(value)) stop(sprintf("Expected a vector, got '%s'", typeof(value)))
+    for (item in value) {
+      check_type(item, type_inside)
+    }
+  } else if (grepl("^list\\((.*)\\)$", expected_type)) {
+    # Check for list types (e.g., list(str))
+    type_inside <- sub("^list\\((.*)\\)$", "\\1", expected_type)
+    if (!is.list(value)) stop(sprintf("Expected a list, got '%s'", typeof(value)))
+    for (item in value) {
+      check_type(item, type_inside)
+    }
+  } else if (expected_type != "any") {
+    stop(sprintf("Unknown type '%s'", expected_type))
+  }
+}
+
+
+
+# # Function for checking arguments before calling
+# type_check_function <- function(func, args) {
+#   expected_types <- func$type_info$args
+#   for (i in seq_along(args)) {
+#     check_type(args[[i]], expected_types[i])
+#   }
+#   result <- func$fn(args)
+#   # Check return type if required
+#   check_type(result, func$type_info$return)
+#   return(result)
+# }

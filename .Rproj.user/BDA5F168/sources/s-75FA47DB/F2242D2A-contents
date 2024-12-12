@@ -59,7 +59,7 @@ return_odd <- annotate(
     # print(is_odd)
     logical(is_odd) <- (x %% 2 == 1)
     return(is_odd)
-  }, c("double"), "logical"
+  }, list("double"), "logical"
 )
 
 return_vector <- annotate(
@@ -67,7 +67,7 @@ return_vector <- annotate(
     # return_vec <- NULL
     vec_double(return_vec, 2) <- c(x, y)
     return(return_vec)
-  }, c('double', 'double'), list(type = "double", length = 2)
+  }, list('double', 'double'), list(type = "double", length = 2)
 )
 
 res <- return_vector(1, 2)
@@ -77,6 +77,7 @@ logical(hi) <- TRUE
 
 logical(is_odd) <- 'hihi'
 
-add_integer_vec <- typed_add_scalar("integer", 3)
+add_integer_vec <- typed_multiply_scalar("integer", 3)
 
-add_integer_vec(c(1L,2L,3L), 3L)
+add_integer_vec(c(1L,2L,111L), 11L)
+

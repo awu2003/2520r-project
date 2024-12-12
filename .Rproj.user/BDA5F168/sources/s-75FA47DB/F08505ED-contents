@@ -4,6 +4,7 @@
 annotate <- function(func, input_types, output_type) {
   function(...) {
     args <- list(...)
+    # print(input_types)
     # if dots in args
     if (has_dots_argument(func)) {
       dots_index <- which(input_types == "...")
@@ -11,7 +12,7 @@ annotate <- function(func, input_types, output_type) {
       # check arguments before dots
       if (dots_index > 1) {
         for (i in 1:(dots_index - 1)) {
-          type_check(args[[i]], input_types[i])
+          type_check(args[[i]], input_types[[i]])
         }
       }
       
@@ -33,7 +34,7 @@ annotate <- function(func, input_types, output_type) {
     # no dots in args
     } else {
       for (i in 1:length(args)) {
-        type_check(args[[i]], input_types[i])
+        type_check(args[[i]], input_types[[i]])
       }
     }
     
@@ -59,3 +60,7 @@ has_dots_argument <- function(func) {
   formal_args <- formals(func)
   return(any(names(formal_args) == "..."))
 }
+
+add_integer_vec <- typed_add_scalar("integer", 3)
+
+add_integer_vec(c(1L,2L,111L), 10L)

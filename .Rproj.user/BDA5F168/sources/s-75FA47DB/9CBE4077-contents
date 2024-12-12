@@ -6,7 +6,7 @@ type_check <- function(value, expected_type) {
   if (missing(expected_type) || is.null(expected_type)) {
     stop("Error: 'expected_type' is missing or NULL. Please provide a valid expected type.")
   }
-  
+
   # store type to check
   if (is.list(expected_type)) {
     type <- expected_type$type
@@ -15,30 +15,51 @@ type_check <- function(value, expected_type) {
     type <- expected_type
     length <- NULL
   }
-  
+
   # check for list matching
   if (!is.scalar(value) && !is.list(expected_type)) {
     stop(
       "Error: 'value' is a vector, but 'expected_type' is not a list. Use a list to specify type and length for vectors."
     )
   }
-  
+
   # check type
-  if (!is_type(value, type)) {
-    # change reference to "numeric" type
-    if (class(value) == "numeric") {
-      arg_type <- "double"
+  if (!is.scalar(value)) { # vector case
+    for (i in seq_along(value)) {
+      if (!is_type(value[i], type)) {
+        # change reference to "numeric" type
+        if (class(value[i]) == "numeric") {
+          arg_type <- "double"
+        }
+        else {
+          arg_type <- class(value[i])
+        }
+        stop(sprintf(
+          "Error: Type mismatch at index '%d'. Expected '%s', but got '%s'.",
+          i,
+          type,
+          arg_type
+        ))
+      }
     }
-    else {
-      arg_type <- class(value)
-    }
-    stop(sprintf(
-      "Error: Type mismatch. Expected '%s', but got '%s'.",
-      type,
-      arg_type
-    ))
   }
-  
+  else {
+    if (!is_type(value, type)) {
+      # change reference to "numeric" type
+      if (class(value) == "numeric") {
+        arg_type <- "double"
+      }
+      else {
+        arg_type <- class(value)
+      }
+      stop(sprintf(
+        "Error: Type mismatch. Expected '%s', but got '%s'.",
+        type,
+        arg_type
+      ))
+    }
+  }
+
   # check length if vector is expected
   if (!is.null(length) && length(value) != length) {
     stop(sprintf(
@@ -47,7 +68,7 @@ type_check <- function(value, expected_type) {
       length(value)
     ))
   }
-  
+
   return(TRUE)
 }
 

@@ -60,7 +60,3 @@ has_dots_argument <- function(func) {
   formal_args <- formals(func)
   return(any(names(formal_args) == "..."))
 }
-
-add_integer_vec <- typed_add_scalar("integer", 3)
-
-add_integer_vec(c(1L,2L,111L), 10L)

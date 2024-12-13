@@ -61,7 +61,7 @@ expect_stop(integer(elem) <- return_second_arg(c(1L, 2L)))
 
 # R has a lot of strange side effects
 # if you don't specify a return type, it just spits out whatever's on the last line
-# ideally future work would add a NULL return type
+# ideally future work would enforce a NULL return type
 
 print_side_effect <- annotate(function(message) {
   print(message)
@@ -69,4 +69,4 @@ print_side_effect <- annotate(function(message) {
 
 printed <- NULL
 character(printed) <- print_side_effect("hello world!")
-stopifnot(printed == "hello world!")
+stopifnot(printed == "hello world!") # returns message

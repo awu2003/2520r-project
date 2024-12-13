@@ -73,7 +73,7 @@ type_check <- function(value, expected_type) {
 }
 
 
-# helper to check something is a scalar
+# helper to check if object is a scalar
 is.scalar <- function(x) {
   return(length(x) == 1)
 }

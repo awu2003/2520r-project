@@ -4,7 +4,7 @@
 annotate <- function(func, input_types, output_type) {
   function(...) {
     args <- list(...)
-    # print(input_types)
+    
     # if dots in args
     if (has_dots_argument(func)) {
       dots_index <- which(input_types == "...")
@@ -31,7 +31,7 @@ annotate <- function(func, input_types, output_type) {
           type_check(arg, dots_type)
         }
       }
-    # no dots in args
+      # no dots in args
     } else {
       for (i in 1:length(args)) {
         type_check(args[[i]], input_types[[i]])

@@ -1,0 +1,3 @@
+### DEMOS OF CODE SNIPPETS IN PAPER
+
+hihi <- c(1L, 2L)

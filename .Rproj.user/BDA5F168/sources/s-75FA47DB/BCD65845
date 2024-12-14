@@ -1,26 +1,26 @@
 {
-    "id": "959ABE0E",
-    "path": "~/Desktop/types/tests/simpletypechecking.R",
-    "project_path": "tests/simpletypechecking.R",
+    "id": "BCD65845",
+    "path": "~/Desktop/types/typechecking/typedefs.R",
+    "project_path": "typechecking/typedefs.R",
     "type": "r_source",
     "hash": "0",
     "contents": "",
     "dirty": false,
-    "created": 1734055393588.0,
+    "created": 1734157295995.0,
     "source_on_save": false,
-    "relative_order": 4,
+    "relative_order": 10,
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "0,0",
-        "scrollLine": "0"
+        "cursorPosition": "433,0",
+        "scrollLine": "422"
     },
     "folds": "",
-    "lastKnownWriteTime": 1734158992,
+    "lastKnownWriteTime": 1734159295,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1734158992179,
+    "last_content_update": 1734159295509,
     "read_only": false,
     "read_only_alternatives": []
 }

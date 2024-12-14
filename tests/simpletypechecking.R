@@ -79,5 +79,5 @@ stopifnot(a == "hello")
 
 a <- NULL
 integer(a) <- 100L
-integer(a) <- "hello"
+expect_stop(integer(a) <- "hello")
 stopifnot(a == 100L)

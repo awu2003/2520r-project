@@ -40,7 +40,7 @@ type_check <- function(value, expected_type) {
   }
   
   # check length if vector is expected
-  if (is.vector(value) && !is.scalar(value) && !is.null(length) && length(value) != length) {
+  if (is.vector(value) && !is.scalar(value) && !is.na(length) && length(value) != length) {
     stop(sprintf(
       "Error: Length mismatch. Expected length %d, but got %d.",
       length,
@@ -50,14 +50,14 @@ type_check <- function(value, expected_type) {
   
   # check dims if matrix is expected
   if (is.matrix(value)) {
-    if (nrow(value) != n_row) {
+    if (!is.na(n_row) && nrow(value) != n_row) {
       stop(sprintf(
         "Error: Length mismatch. Expected %d rows, but got %d.",
         n_row,
         nrow(value)
       ))
     }
-    if (ncol(value) != n_col) {
+    if (!is.na(n_col) && ncol(value) != n_col) {
       stop(sprintf(
         "Error: Length mismatch. Expected %d cols, but got %d.",
         n_col,

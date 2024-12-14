@@ -63,7 +63,14 @@ vec_double(vec_normal, 5) <- rnorm(5, 0, 1)
 expect_stop(vec_double(vec_normal, 5) <-
               rnorm(3, 0, 1)) # fails because of length mismatch
 
-# short demonstration that you can typecheck individual components of vectors
+# demonstration of ability to typecheck without enforcing lengths
+v1 <- NULL
+vec_logical(v1, NA) <- c(TRUE, TRUE, FALSE)
+expect_stop(vec_double(v1, NA) <- c(1L, 2L))
+expect_stop(vec_double(v1, NA) <- c(1, 2))
+vec_logical(v1, NA) <- c(FALSE, TRUE)
+
+# demonstration that you can typecheck individual components of vectors
 new_vec <- NULL
 vec_character(new_vec, 3) <- c("1", "2", "3")
 character(new_vec[2]) <- "two"

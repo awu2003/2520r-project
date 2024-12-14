@@ -249,11 +249,11 @@
   existing_value <- get(name, envir = env)
   
   if (is.null(x)) {
-    print("Object declared. Initializing the value.")
+    message("Object declared. Initializing the value.")
   }
   else {
     check_length(existing_value, length)
-    print("Object exists. Updating the value.")
+    message("Object exists. Updating the value.")
   }
   
   # check type of existing object
@@ -284,11 +284,11 @@
   existing_value <- get(name, envir = env)
   
   if (is.null(x)) {
-    print("Object declared. Initializing the value.")
+    message("Object declared. Initializing the value.")
   }
   else {
     check_length(existing_value, length)
-    print("Object exists. Updating the value.")
+    message("Object exists. Updating the value.")
   }
   
   # check type of existing object
@@ -300,15 +300,6 @@
         typeof(existing_value)
       )
     )
-  }
-  
-  # check length of existing object
-  if (length(existing_value) != length) {
-    stop(sprintf(
-      "Error: Length mismatch. Expected length %d, but got %d.",
-      length,
-      length(existing_value)
-    ))
   }
   
   return(value)
@@ -328,11 +319,11 @@
   existing_value <- get(name, envir = env)
   
   if (is.null(x)) {
-    print("Object declared. Initializing the value.")
+    message("Object declared. Initializing the value.")
   }
   else {
     check_length(existing_value, length)
-    print("Object exists. Updating the value.")
+    message("Object exists. Updating the value.")
   }
   
   # check type of existing object
@@ -363,11 +354,11 @@
   existing_value <- get(name, envir = env)
   
   if (is.null(x)) {
-    print("Object declared. Initializing the value.")
+    message("Object declared. Initializing the value.")
   }
   else {
     check_length(existing_value, length)
-    print("Object exists. Updating the value.")
+    message("Object exists. Updating the value.")
   }
   
   # check type of existing object
@@ -402,11 +393,11 @@
   existing_value <- get(name, envir = env)
   
   if (is.null(x)) {
-    print("Object declared. Initializing the value.")
+    message("Object declared. Initializing the value.")
   }
   else {
     check_matrix_size(existing_value, length, width)
-    print("Object exists. Updating the value.")
+    message("Object exists. Updating the value.")
   }
   
   # check type of existing object
@@ -437,11 +428,11 @@
   existing_value <- get(name, envir = env)
   
   if (is.null(x)) {
-    print("Object declared. Initializing the value.")
+    message("Object declared. Initializing the value.")
   }
   else {
     check_matrix_size(existing_value, length, width)
-    print("Object exists. Updating the value.")
+    message("Object exists. Updating the value.")
   }
   
   # check type of existing object
@@ -472,11 +463,11 @@
   existing_value <- get(name, envir = env)
   
   if (is.null(x)) {
-    print("Object declared. Initializing the value.")
+    message("Object declared. Initializing the value.")
   }
   else {
     check_matrix_size(existing_value, length, width)
-    print("Object exists. Updating the value.")
+    message("Object exists. Updating the value.")
   }
   
   # check type of existing object
@@ -507,11 +498,11 @@
   existing_value <- get(name, envir = env)
   
   if (is.null(x)) {
-    print("Object declared. Initializing the value.")
+    message("Object declared. Initializing the value.")
   }
   else {
     check_matrix_size(existing_value, length, width)
-    print("Object exists. Updating the value.")
+    message("Object exists. Updating the value.")
   }
   
   # check type of existing object
@@ -542,11 +533,11 @@
   existing_value <- get(name, envir = env)
   
   if (is.null(x)) {
-    print("Object declared. Initializing the value.")
+    message("Object declared. Initializing the value.")
   }
   else {
     check_matrix_size(existing_value, length, width)
-    print("Object exists. Updating the value.")
+    message("Object exists. Updating the value.")
   }
   
   # check type of existing object
@@ -565,7 +556,7 @@
 
 # helper function to deal with length mismatches
 check_length <- function(existing_value, length) {
-  if (length(existing_value) != length) {
+  if (!is.na(length) && length(existing_value) != length) {
     stop(sprintf(
       "Error: Length mismatch. Object is of length %d, but input is length %d.",
       length(existing_value),
@@ -575,20 +566,20 @@ check_length <- function(existing_value, length) {
 }
 
 # helper function to deal with length mismatches
-check_matrix_size <- function(existing_value, nrow, ncol) {
-  if (nrow(existing_value) != nrow) {
+check_matrix_size <- function(existing_value, n_row, n_col) {
+  if (!is.na(n_row) && nrow(existing_value) != n_row) {
     stop(sprintf(
       "Error: Length mismatch. Object has %d rows, but input has %d rows.",
       nrow(existing_value),
-      nrow
+      n_row
     ))
   }
   
-  if (ncol(existing_value) != ncol) {
+  if (!is.na(n_col) && ncol(existing_value) != n_col) {
     stop(sprintf(
       "Error: Length mismatch. Object has %d cols, but input has %d cols.",
       ncol(existing_value),
-      ncol
+      n_col
     ))
   }
 }

@@ -431,6 +431,146 @@
   return(value)
 }
 
+`mat_integer<-` <- function(x, length, width, value, env = parent.frame()) {
+  # check type of value to assign
+  type_check(value, matrix_type("integer", length, width))
+  
+  # if object not in env, break
+  name <- deparse(substitute(x))
+  
+  if (!exists(name, envir = env)) {
+    stop("Error: object does not exist. Please initialize object first.")
+  }
+  
+  existing_value <- get(name, envir = env)
+  
+  if (is.null(x)) {
+    print("Object declared. Initializing the value.")
+  }
+  else {
+    check_matrix_size(existing_value, length, width)
+    print("Object exists. Updating the value.")
+  }
+  
+  # check type of existing object
+  if (typeof(existing_value) != typeof(value) &&
+      !is.null(existing_value)) {
+    stop(
+      sprintf(
+        "Error: Type mismatch. Object type is '%s', can not assign as integer type.",
+        typeof(existing_value)
+      )
+    )
+  }
+  
+  return(value)
+}
+
+`mat_logical<-` <- function(x, length, width, value, env = parent.frame()) {
+  # check type of value to assign
+  type_check(value, matrix_type("logical", length, width))
+  
+  # if object not in env, break
+  name <- deparse(substitute(x))
+  
+  if (!exists(name, envir = env)) {
+    stop("Error: object does not exist. Please initialize object first.")
+  }
+  
+  existing_value <- get(name, envir = env)
+  
+  if (is.null(x)) {
+    print("Object declared. Initializing the value.")
+  }
+  else {
+    check_matrix_size(existing_value, length, width)
+    print("Object exists. Updating the value.")
+  }
+  
+  # check type of existing object
+  if (typeof(existing_value) != typeof(value) &&
+      !is.null(existing_value)) {
+    stop(
+      sprintf(
+        "Error: Type mismatch. Object type is '%s', can not assign as logical type.",
+        typeof(existing_value)
+      )
+    )
+  }
+  
+  return(value)
+}
+
+`mat_character<-` <- function(x, length, width, value, env = parent.frame()) {
+  # check type of value to assign
+  type_check(value, matrix_type("character", length, width))
+  
+  # if object not in env, break
+  name <- deparse(substitute(x))
+  
+  if (!exists(name, envir = env)) {
+    stop("Error: object does not exist. Please initialize object first.")
+  }
+  
+  existing_value <- get(name, envir = env)
+  
+  if (is.null(x)) {
+    print("Object declared. Initializing the value.")
+  }
+  else {
+    check_matrix_size(existing_value, length, width)
+    print("Object exists. Updating the value.")
+  }
+  
+  # check type of existing object
+  if (typeof(existing_value) != typeof(value) &&
+      !is.null(existing_value)) {
+    stop(
+      sprintf(
+        "Error: Type mismatch. Object type is '%s', can not assign as character type.",
+        typeof(existing_value)
+      )
+    )
+  }
+  
+  return(value)
+}
+
+`mat_factor<-` <- function(x, length, width, value, env = parent.frame()) {
+  # check type of value to assign
+  type_check(value, matrix_type("factor", length, width))
+  
+  # if object not in env, break
+  name <- deparse(substitute(x))
+  
+  if (!exists(name, envir = env)) {
+    stop("Error: object does not exist. Please initialize object first.")
+  }
+  
+  existing_value <- get(name, envir = env)
+  
+  if (is.null(x)) {
+    print("Object declared. Initializing the value.")
+  }
+  else {
+    check_matrix_size(existing_value, length, width)
+    print("Object exists. Updating the value.")
+  }
+  
+  # check type of existing object
+  if (typeof(existing_value) != typeof(value) &&
+      !is.null(existing_value)) {
+    stop(
+      sprintf(
+        "Error: Type mismatch. Object type is '%s', can not assign as factor type.",
+        typeof(existing_value)
+      )
+    )
+  }
+  
+  return(value)
+}
+
 # helper function to deal with length mismatches
 check_length <- function(existing_value, length) {
   if (length(existing_value) != length) {

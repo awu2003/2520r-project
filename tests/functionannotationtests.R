@@ -57,6 +57,18 @@ stopifnot(elem == 2L)
 # fails because argument is of length 2, not 3
 expect_stop(integer(elem) <- return_second_arg(c(1L, 2L)))
 
+
+# demonstration of annotations on an existing function in R
+typed_rnorm <- annotate(
+  \(n, mean, var) rnorm(n,mean,var),
+  list("integer", "double", "double"),
+  vector_type("double", NA)
+)
+
+a <- NULL
+vec_double(a, NA) <- typed_rnorm(3L, 0, 1)
+expect_stop(vec_double(a, NA) <- typed_rnorm(3, 0, 1)) # incorrect type for n
+
 ### LIMITATIONS
 
 # R has a lot of strange side effects

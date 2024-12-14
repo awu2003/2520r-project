@@ -602,3 +602,8 @@ vector_type <- function(type, length) {
 matrix_type <- function(type, length, width) {
   return(list(type = type, length = c(length, width), composite="matrix"))
 }
+
+# helper function to generate array types
+array_type <- function(type, dims) {
+  return(list(type = type, length = dims, composite="array"))
+}

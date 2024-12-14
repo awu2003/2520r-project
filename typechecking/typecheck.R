@@ -1,6 +1,4 @@
 type_check <- function(value, expected_type) {
-  print(value)
-  print(expected_type)
   # input validation
   if (missing(value) || is.null(value)) {
     stop("Error: 'value' is missing or NULL. Please provide a valid value to check.")

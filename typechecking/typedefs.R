@@ -40,7 +40,6 @@
   return(value)
 }
 
-
 `integer<-` <- function(x, value, env = parent.frame()) {
   # check type of value to assign
   type_check(value, 'integer')
@@ -78,7 +77,6 @@
   }
   return(value)
 }
-
 
 `logical<-` <- function(x, value, env = parent.frame()) {
   # check type of value to assign
@@ -118,7 +116,6 @@
   return(value)
 }
 
-
 `character<-` <- function(x, value, env = parent.frame()) {
   # check type of value to assign
   type_check(value, 'character')
@@ -156,7 +153,6 @@
   }
   return(value)
 }
-
 
 `factor<-` <- function(x, value, env = parent.frame()) {
   # check type of value to assign
@@ -239,7 +235,6 @@
   return(value)
 }
 
-
 `vec_integer<-` <- function(x, length, value, env = parent.frame()) {
   # check type of value to assign
   type_check(value, vector_type("integer", length))
@@ -274,7 +269,6 @@
   
   return(value)
 }
-
 
 `vec_logical<-` <- function(x, length, value, env = parent.frame()) {
   # check type of value to assign
@@ -320,7 +314,6 @@
   return(value)
 }
 
-
 `vec_character<-` <- function(x, length, value, env = parent.frame()) {
   # check type of value to assign
   type_check(value, vector_type("character", length))
@@ -355,7 +348,6 @@
   
   return(value)
 }
-
 
 `vec_factor<-` <- function(x, length, value, env = parent.frame()) {
   # check type of value to assign

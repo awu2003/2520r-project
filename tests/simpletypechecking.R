@@ -71,11 +71,11 @@ expect_stop(vec_double(v1, NA) <- c(1, 2))
 vec_logical(v1, NA) <- c(FALSE, TRUE)
 
 # demonstration that you can typecheck individual components of vectors
-new_vec <- NULL
-vec_character(new_vec, 3) <- c("1", "2", "3")
-character(new_vec[2]) <- "two"
-expect_stop(double(new_vec[1]) <- 1) # fails because vector element is a claracter
-stopifnot(identical(new_vec, c("1", "two", "3")))
+v2 <- NULL
+vec_character(v2) <- c("1", "2", "3")
+character(v2[2]) <- "two"
+expect_stop(double(v2[1]) <- 1) # fails because vector element is a character
+stopifnot(identical(v2, c("1", "two", "3")))
 
 ### LIMITATIONS
 # must use assignment wrapper in order to force typechecking
